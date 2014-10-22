@@ -3,6 +3,9 @@
   <component name="CoverageOptionsProvider">
     <option name="myActivateViewOnRun" value="false" />
   </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="IdProvider" IDEtalkID="37CE6E8AB25091B35392A19BF4F38934" />
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
