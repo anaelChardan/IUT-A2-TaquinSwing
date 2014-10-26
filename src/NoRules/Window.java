@@ -20,9 +20,10 @@ public class Window extends JFrame {
     private JPanel container = new JPanel();
 
     public Window() {
-        this.setTitle("Taquin");
-        this.setSize(700, 700);
+        this.setTitle("..::Taquin by CHARDAN Anaël & LAMOUREUX Marty S3A\" ::..");
+        this.setSize(Constant._windowWidth, Constant._windowHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
 
 
@@ -38,11 +39,9 @@ public class Window extends JFrame {
 
         ///////Button to throw a Column///////
         _throwColumn.addActionListener( new throwColumn() );
-        _throwColumn.setEnabled( false );
 
         //////Button to throw a Row//////////
         _throwRow.addActionListener( new throwRow() );
-        _throwRow.setEnabled( false );
 
         //////Button to reset//////////
         _reset.addActionListener( new reset() );
@@ -108,6 +107,10 @@ public class Window extends JFrame {
     private class reset implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             _theGrid.reset();
+            _throwRow.setEnabled(true);
+            _throwColumn.setEnabled(true);
+            _addRow.setEnabled(true);
+            _addColumn.setEnabled(true);
         }
     }
 }

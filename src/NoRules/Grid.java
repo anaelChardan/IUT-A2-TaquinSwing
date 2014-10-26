@@ -1,7 +1,7 @@
 package NoRules;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Created by Ananas on 25/10/14.
@@ -11,14 +11,76 @@ public class Grid extends Canvas {
     private int _nbColumns;
     private int _axis;
     private int _ordinate;
-    private int _columnWidth = 50;
-    private int _rowHeight = 50 ;
-    private int _initialRow = 5;
-    private int _initialColumn = 5;
+
+
+    ///////Perhaps an other solution is better like a collection to use the shuffle api function
+    // : http://fr.openclassrooms.com/forum/sujet/melanger-un-tableau/////
+    private Token[][] _tokenWhole;
 
     public Grid() {
-        this._nbRows = this._initialRow;
-        this._nbColumns = this._initialColumn;
+        this._nbRows = Constant._initialRow;
+        this._nbColumns = Constant._initialColumn;
+        fillGrid();
+    }
+
+    private void fillGrid() {
+        int cpt = 0;
+        _tokenWhole = new Token[_nbRows][_nbColumns];
+        double colorProgression = Math.ceil( 255 / ( _nbRows * _nbColumns ) );
+
+        ///////////Fill the grid////////////////
+        for ( int i = 0; i < _nbRows; ++i ) {
+            for ( int j = 0; j < _nbColumns; ++j ) {
+                if ( i != _nbRows - 1 || j != _nbColumns - 1 ) {
+                    int greenAndBlueValue = ( cpt + 1 ) * (int)colorProgression;
+                    Color backgroundColor = new Color( 100, greenAndBlueValue, greenAndBlueValue );
+                    _tokenWhole[i][j] = new Token( i, j, cpt, backgroundColor );
+                    cpt++;
+                } else {
+                    ////////The last cell in the grid had to be empty////////
+                    _tokenWhole[i][j] = null;
+                }
+
+
+            }
+        }
+
+        /////////TO DO -> shuffle the grid ////////
+        /*for ( int i = 0; i < _nbRows; ++i ) {
+            for ( int j = 0; j < _nbColumns; ++j ) {
+                if ( _tokenWhole[i][j] == null ) {
+                    System.out.print("X");
+                } else
+                System.out.print(_tokenWhole[i][j].get_number() + " ");
+            }
+            System.out.println("");
+        }*/
+
+
+    }
+
+    //////To convert an Index to represent it on the graphic /////////
+    private int convertIndexXToPixel(int i) {
+        return Constant._columnWidth * i + _axis;
+    }
+
+    private int convertIndexYToPixel(int j) {
+        return Constant._rowHeight * j + _ordinate;
+    }
+
+    private double convertXPixel( int xpixel ) {
+        if ( xpixel >= _axis  && xpixel <= ( _axis + ( _nbColumns * Constant._columnWidth ) ) ) {
+            return Math.ceil( ( xpixel - _axis ) / ( Constant._columnWidth ) );
+        }
+        return -1;
+    }
+
+    private double convertYPixel( int ypixel ) {
+        if ( ypixel >= _ordinate && ypixel <= ( _ordinate + ( _nbRows * Constant._rowHeight ) ) ) {
+            return Math.ceil( ( ypixel - _ordinate ) / ( Constant._rowHeight ) );
+        }
+
+        return -1;
     }
 
     @Override
@@ -26,23 +88,58 @@ public class Grid extends Canvas {
         super.paint(g);
 
         //////////////Calcul of the beginning of the axis and the ordinate////////////////
-        _axis = ( this.getSize().width / 2 ) - ( this._nbColumns * this._columnWidth / 2 );
-        _ordinate = ( this.getSize().height / 2 ) - ( this._nbRows * this._rowHeight / 2 );
+        _axis = ( this.getSize().width / 2 ) - ( this._nbColumns * Constant._columnWidth / 2 );
+        _ordinate = ( this.getSize().height / 2 ) - ( this._nbRows * Constant._rowHeight / 2 );
+
+        ///////////// Draw The Token Whole/////////////////
+        for ( int i = 0; i < _nbRows; ++i ) {
+            for ( int j = 0; j < _nbColumns; ++j ) {
+                if ( _tokenWhole[i][j] != null ) {
+                    g.setColor(_tokenWhole[i][j].get_backColor());
+                    g.fillRect(convertIndexXToPixel(j), convertIndexYToPixel(i), Constant._columnWidth, Constant._rowHeight);
+                }
+
+            }
+        }
+        g.setColor(Color.black);
+
+        //////////////Calcul of the size of the line//////////////////////
+        int _axisSize = _axis + ( _nbColumns * Constant._columnWidth );
+        int _ordinateSize = _ordinate + ( _nbRows * Constant._rowHeight );
 
         /////////////Draw horizontal Line////////////
         for ( int i = 0 ; i <= _nbRows ; i ++ )
-            g.drawLine( _axis, _ordinate + _rowHeight * i , _axis + ( _nbColumns * _columnWidth ),  _ordinate + _rowHeight * i );
+            g.drawLine( _axis, convertIndexYToPixel(i) , _axisSize,  convertIndexYToPixel(i) );
 
         /////////////Draw Vertical Line//////////////
         for ( int i = 0; i <= _nbColumns; i++ )
-            g.drawLine( _axis + _columnWidth * i, _ordinate, _axis + _columnWidth * i, _ordinate + ( _nbRows * _rowHeight ) );
+            g.drawLine( convertIndexXToPixel(i), _ordinate, convertIndexXToPixel(i), _ordinateSize );
 
+        ////////////Draw the number/////////////////
+
+        //Utils to center the number in it cell
+        FontMetrics fm = g.getFontMetrics();
+        Rectangle2D rect;
+
+        for ( int i = 0; i < _nbRows; ++i ) {
+            for ( int j = 0; j < _nbColumns; ++j ) {
+                if ( _tokenWhole[i][j] != null ) {
+                    String number = String.valueOf(_tokenWhole[i][j].get_number());
+                    rect = fm.getStringBounds(number, g);
+                    g.setColor(_tokenWhole[i][j].get_textColor());
+                    g.drawString(number, (int) ( convertIndexXToPixel(j) + Constant._columnWidth /2 - rect.getWidth()/2),
+                            (int) ( convertIndexYToPixel(i) + Constant._rowHeight /2 + rect.getHeight()/2));
+                }
+
+            }
+        }
     }
 
     public int addColumn() {
         this._nbColumns ++;
+        fillGrid();
         repaint();
-        if ( ( this._nbColumns + 1 ) * this._columnWidth < this.getSize().width ) {
+        if ( ( this._nbColumns + 1 ) * Constant._columnWidth < this.getSize().width ) {
             return 0;
         } else
             return -1;
@@ -52,8 +149,9 @@ public class Grid extends Canvas {
 
     public int addRow() {
         this._nbRows++;
+        fillGrid();
         repaint();
-        if ( ( this._nbRows + 1 ) * this._rowHeight < this.getSize().height ) {
+        if ( ( this._nbRows + 1 ) * Constant._rowHeight < this.getSize().height ) {
             return 0;
         } else
             return -1;
@@ -62,8 +160,9 @@ public class Grid extends Canvas {
 
     public int throwColumn() {
         this._nbColumns--;
+        fillGrid();
         repaint();
-        if ( this._nbColumns == this._initialColumn ) {
+        if ( this._nbColumns == Constant._minColumns ) {
             return -1;
         } else
             return 0;
@@ -71,8 +170,9 @@ public class Grid extends Canvas {
 
     public int throwRow() {
         this._nbRows--;
+        fillGrid();
         repaint();
-        if ( this._nbRows == this._initialRow ) {
+        if ( this._nbRows == Constant._minColumns ) {
             return -1;
         } else
             return 0;
@@ -80,8 +180,9 @@ public class Grid extends Canvas {
     }
 
     public void reset() {
-        this._nbRows = this._initialRow;
-        this._nbColumns = this._initialColumn;
+        this._nbRows = Constant._initialRow;
+        this._nbColumns = Constant._initialColumn;
+        fillGrid();
         repaint();
     }
 }

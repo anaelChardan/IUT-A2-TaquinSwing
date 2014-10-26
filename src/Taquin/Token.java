@@ -9,4 +9,5 @@ public class Token {
     private Color _color;
     private int _indRow;
     private int _indColumn;
+    private int _number;
 }
