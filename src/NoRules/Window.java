@@ -12,7 +12,7 @@ public class Window extends JFrame {
 
     private Grid _theGrid = new Grid();
     private JButton _addColumn = new JButton("Add a Column");
-    private JButton _addRow = new JButton("Add a row");
+    private JButton _addRow = new JButton("Add a Row");
     private JButton _throwColumn = new JButton("Throw a Column");
     private JButton _throwRow = new JButton("Throw a Row");
     private JButton _reset = new JButton("Reset");
