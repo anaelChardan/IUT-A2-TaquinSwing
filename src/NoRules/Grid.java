@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by Ananas on 25/10/14.
  */
-public class Grid extends JPanel {
+public class Grid extends Canvas {
     private int _nbRows;
     private int _nbColumns;
     private int _axis;
@@ -22,7 +22,8 @@ public class Grid extends JPanel {
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paint(Graphics g) {
+        super.paint(g);
 
         //////////////Calcul of the beginning of the axis and the ordinate////////////////
         _axis = ( this.getSize().width / 2 ) - ( this._nbColumns * this._columnWidth / 2 );
