@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf636fb-42ad-4479-803f-d8cbb5c897c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NoRules/Grid.java" afterPath="$PROJECT_DIR$/src/NoRules/Grid.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TaquinSwing.iws" />
@@ -478,7 +477,7 @@
       <workItem from="1414271571027" duration="231000" />
       <workItem from="1414310640527" duration="124000" />
       <workItem from="1414311639459" duration="130000" />
-      <workItem from="1414312469566" duration="213000" />
+      <workItem from="1414312469566" duration="246000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1413985892225</created>
@@ -488,11 +487,15 @@
       <created>1414270856260</created>
       <updated>1414270856260</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="I'm extending Grid of Canvas...">
+      <created>1414312795389</created>
+      <updated>1414312795389</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9398000" />
+    <option name="totallyTimeSpent" value="9431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -573,7 +576,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="Added some necessary class to project, and there default members" />
     <MESSAGE value="Step 1 and 4 of the exercise done and work well, very well" />
-    <option name="LAST_COMMIT_MESSAGE" value="Step 1 and 4 of the exercise done and work well, very well" />
+    <MESSAGE value="I'm extending Grid of Canvas..." />
+    <option name="LAST_COMMIT_MESSAGE" value="I'm extending Grid of Canvas..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
