@@ -44,8 +44,9 @@ public class Grid extends Canvas {
             }
         }
 
-        shuffleGrid();
 
+        shuffleGrid();
+        checkIsWellPlaced();
 
     }
 
@@ -63,6 +64,18 @@ public class Grid extends Canvas {
             for ( int j = 0; j < _nbColumns; ++j ) {
                 _tokenWhole[i][j] = tokenVector.get(indexVector);
                 indexVector++;
+            }
+        }
+    }
+
+    private void checkIsWellPlaced() {
+        for ( int i = 0; i < _nbRows; ++i ) {
+            for ( int j = 0; j < _nbColumns; ++j ) {
+                if ( _tokenWhole[i][j] != null ) {
+                    if ( i * _nbColumns + j == _tokenWhole[i][j].get_number() )
+                        _tokenWhole[i][j].setWellPlace();
+                }
+
             }
         }
     }

@@ -19,6 +19,10 @@ public class Token {
         set_backColor(_color);
     }
 
+    public void setWellPlace() {
+        this.set_backColor(Color.YELLOW);
+    }
+
     public Color get_textColor() {
         return _textColor;
     }
