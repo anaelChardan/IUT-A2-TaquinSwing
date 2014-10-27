@@ -10,6 +10,10 @@ import java.util.*;
   */
 public class GridModel {
 
+    public enum Direction {
+        North, West, East, South
+    }
+
     public static final int _initialRow = 5;
     public static final int _initialColumn = 5;
     public static final int _maxRows = 12;
@@ -84,6 +88,10 @@ public class GridModel {
         for ( int i = 0; i < nbRows; ++i ) {
             for ( int j = 0; j < nbColumns; ++j ) {
                 this.tokens[i][j] = tokens.get(indexVector);
+                if (this.tokens[i][j] != null) {
+                    this.tokens[i][j].setIndRow(i);
+                    this.tokens[i][j].setIndColumn(j);
+                }
                 indexVector++;
             }
         }
@@ -109,8 +117,63 @@ public class GridModel {
         int row = token.getIndRow();
         int col = token.getIndColumn();
 
-        System.out.println(row + ", " + col);
-        return true;
+        Token tokenNorth = null, tokenSouth = null, tokenEast = null, tokenWest = null;
+        boolean skipNorth = false, skipSouth = false, skipEast = false, skipWest = false;
+
+        try {
+            tokenNorth = getNextToken(token, Direction.North);
+        } catch (TokenOutOfGridException e) {
+            skipNorth = true;
+        }
+
+        try {
+            tokenSouth = getNextToken(token, Direction.South);
+        } catch (TokenOutOfGridException e) {
+            skipSouth = true;
+        }
+
+        try {
+            tokenEast = getNextToken(token, Direction.East);
+        } catch (TokenOutOfGridException e) {
+            skipEast = true;
+        }
+
+        try {
+            tokenWest = getNextToken(token, Direction.West);
+        } catch (TokenOutOfGridException e) {
+            skipWest = true;
+        }
+
+
+        return ((!skipNorth && tokenNorth == null) ||
+                (!skipSouth && tokenSouth == null) ||
+                (!skipWest && tokenWest== null) ||
+                (!skipEast && tokenEast == null)
+        );
+    }
+
+    public Token getNextToken(Token token, Direction dir) throws TokenOutOfGridException {
+        int row = token.getIndRow();
+        int col = token.getIndColumn();
+
+        if ((row == 0 && dir == Direction.North) ||
+                (col == 0 && dir == Direction.West) ||
+                (row == nbRows - 1 && dir == Direction.South) ||
+                (col == nbColumns - 1 && dir == Direction.East))
+            throw new TokenOutOfGridException();
+
+        switch (dir) {
+            case North: row--;
+                break;
+            case West: col--;
+                break;
+            case East: col++;
+                break;
+            case South: row++;
+                break;
+        }
+
+        return getToken(row, col);
     }
 
     public GridModel addColumn() {

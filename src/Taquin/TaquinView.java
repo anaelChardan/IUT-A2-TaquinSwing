@@ -1,9 +1,11 @@
 package Taquin;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -54,6 +56,8 @@ public class TaquinView extends JFrame implements Observer {
 
         //////Button to Reset//////////
         reset.addActionListener(new Reset());
+
+        grid.addMouseListener(new Click());
 
 
         JPanel north = new JPanel();
@@ -123,6 +127,27 @@ public class TaquinView extends JFrame implements Observer {
     private class Reset implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             controller.action(TaquinController.Event.ResetGrid);
+        }
+    }
+
+    private class Click extends MouseInputAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            Token mon_jeton = grid.getTokenAt(e.getX(), e.getY());
+            if (mon_jeton == null)
+                System.out.println("Pas de jeton ici, clique dans la grille cono");
+            else {
+                System.out.println(mon_jeton.getNumber());
+//                try {
+//                    Token next = getModel().getGrid().getNextToken(mon_jeton, GridModel.Direction.East);
+//                    System.out.println("A droite : " + next.getIndRow() + ", " + next.getIndColumn() + " #" + next.getNumber());
+//                } catch (TokenOutOfGridException e1) {
+//                    System.out.println("En dehors de la grille :D");
+//                }
+                System.out.println(getModel().getGrid().isTokenMovable(mon_jeton) ? "peut bouger" : "peut pas bouger");
+            }
         }
     }
 }

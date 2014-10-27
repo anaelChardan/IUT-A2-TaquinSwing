@@ -41,19 +41,32 @@ public class GridView extends Canvas {
         return _rowHeight * j + ordinate;
     }
 
-    private double convertXPixel( int xpixel ) {
+    public int convertXPixel( int xpixel ) {
         if ( xpixel >= axis && xpixel <= ( axis + ( gridModel.getNbColumns() * _columnWidth ) ) ) {
-            return Math.ceil( ( xpixel - axis) / ( _columnWidth ) );
+            return (int) Math.ceil( ( xpixel - axis) / ( _columnWidth ) );
         }
         return -1;
     }
 
-    private double convertYPixel( int ypixel ) {
+    public int convertYPixel( int ypixel ) {
         if ( ypixel >= ordinate && ypixel <= ( ordinate + ( gridModel.getNbRows() * _rowHeight ) ) ) {
-            return Math.ceil( ( ypixel - ordinate) / ( _rowHeight ) );
+            return (int) Math.ceil( ( ypixel - ordinate) / ( _rowHeight ) );
         }
 
         return -1;
+    }
+
+    public Token getTokenAt(int x, int y) {
+        int coordX = convertXPixel(x);
+        int coordY = convertYPixel(y);
+
+        if (coordX < 0 || coordY < 0)
+            return null;
+
+        if (coordX > GridModel._maxColumns || coordY > GridModel._maxRows)
+            return null;
+
+        return gridModel.getToken(coordY, coordX);
     }
 
     @Override
