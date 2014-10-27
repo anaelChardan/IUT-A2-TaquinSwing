@@ -101,6 +101,18 @@ public class GridModel {
         }
     }
 
+    public boolean isTokenMovable(int row, int col) {
+        return isTokenMovable(getToken(row, col));
+    }
+
+    public boolean isTokenMovable(Token token) {
+        int row = token.getIndRow();
+        int col = token.getIndColumn();
+
+        System.out.println(row + ", " + col);
+        return true;
+    }
+
     public GridModel addColumn() {
         this.nbColumns++;
         fillGrid();
