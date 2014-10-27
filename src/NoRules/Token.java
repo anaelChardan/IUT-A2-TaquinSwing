@@ -17,7 +17,6 @@ public class Token {
         this._indColumn = _indColumn;
         this._number = _number;
         set_backColor(_color);
-
     }
 
     public Color get_textColor() {
@@ -45,11 +44,6 @@ public class Token {
         this._textColor = Brightness( this._backColor ) < 130 ? Color.white : Color.black;
     }
 
-    private void checkIsWellPlace() {
-        if ( ( _indRow + 1 ) * ( _indColumn + 1 ) == _number ) {
-            set_backColor(Color.YELLOW);
-        }
-    }
 
     public int get_indRow() {
         return _indRow;
@@ -57,7 +51,6 @@ public class Token {
 
     public void set_indRow(int _indRow) {
         this._indRow = _indRow;
-        checkIsWellPlace();
     }
 
     public int get_indColumn() {
@@ -66,7 +59,6 @@ public class Token {
 
     public void set_indColumn(int _indColumn) {
         this._indColumn = _indColumn;
-        checkIsWellPlace();
     }
 
     public int get_number() {

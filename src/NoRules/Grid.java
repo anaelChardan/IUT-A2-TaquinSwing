@@ -44,7 +44,7 @@ public class Grid extends Canvas {
             }
         }
 
-        shuffleGrid();
+        //shuffleGrid();
 
 
     }
@@ -63,7 +63,6 @@ public class Grid extends Canvas {
             for ( int j = 0; j < _nbColumns; ++j ) {
                 _tokenWhole[i][j] = tokenVector.get(indexVector);
                 indexVector++;
-
             }
         }
     }
