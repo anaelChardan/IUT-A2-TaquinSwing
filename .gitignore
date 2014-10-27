@@ -14,3 +14,9 @@ hs_err_pid*
 workspace.xml
 .idea/workspace.xml
 .idea/copyright/profiles_settings.xml
+.idea/inspectionProfiles/
+taquin.properties
+
+taquin.xml
+
+.idea/ant.xml

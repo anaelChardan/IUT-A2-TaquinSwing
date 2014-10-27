@@ -48,7 +48,15 @@ public class GridModel {
     /**
       *
     */
-    private void fillGrid() {
+    public void fillGrid() {
+        fillResolvedGrid();
+
+        shuffleGrid();
+        checkIsWellLocated();
+
+    }
+
+    public void fillResolvedGrid() {
         int cpt = 1;
         tokens = new Token[nbRows][nbColumns];
 
@@ -70,13 +78,9 @@ public class GridModel {
 
             }
         }
-
-        shuffleGrid();
-        checkIsWellLocated();
-
     }
 
-    private void shuffleGrid() {
+    public void shuffleGrid() {
         ArrayList<Token> tokens = new ArrayList<>();
         for ( int i = 0; i < nbRows; ++i )
             tokens.addAll(Arrays.asList(this.tokens[i]).subList(0, nbColumns));
@@ -107,10 +111,6 @@ public class GridModel {
 
             }
         }
-    }
-
-    public boolean isTokenMovable(int row, int col) {
-        return isTokenMovable(getToken(row, col));
     }
 
     public boolean isTokenMovable(Token token) {
@@ -177,6 +177,8 @@ public class GridModel {
     }
 
     public GridModel addColumn() {
+        if (!this.canAddColumn())
+            return this;
         this.nbColumns++;
         fillGrid();
         return this;
@@ -187,6 +189,8 @@ public class GridModel {
     }
 
     public GridModel addRow() {
+        if (!this.canAddRow())
+            return this;
         this.nbRows++;
         fillGrid();
         return this;
@@ -197,6 +201,8 @@ public class GridModel {
     }
 
     public GridModel throwColumn() {
+        if (!canThrowColumn())
+            return this;
         this.nbColumns--;
         fillGrid();
         return this;
@@ -207,6 +213,8 @@ public class GridModel {
     }
 
     public GridModel throwRow() {
+        if (!canThrowRow())
+            return this;
         this.nbRows--;
         fillGrid();
         return this;
@@ -227,7 +235,7 @@ public class GridModel {
     }
 
     public void setNbRows(int nbRows) {
-        this.nbRows = nbRows;
+        this.nbRows = Math.max(Math.min(nbRows, _maxRows), _minRows);
     }
 
     public int getNbColumns() {
@@ -235,7 +243,7 @@ public class GridModel {
     }
 
     public void setNbColumns(int nbColumns) {
-        this.nbColumns = nbColumns;
+        this.nbColumns =  Math.max(Math.min(nbColumns, _maxColumns), _minColumns);
     }
 
     public Token getToken(int row, int col) {
