@@ -2,6 +2,7 @@ package NoRules;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.util.*;
 
 /**
  * Created by Ananas on 25/10/14.
@@ -12,9 +13,6 @@ public class Grid extends Canvas {
     private int _axis;
     private int _ordinate;
 
-
-    ///////Perhaps an other solution is better like a collection to use the shuffle api function
-    // : http://fr.openclassrooms.com/forum/sujet/melanger-un-tableau/////
     private Token[][] _tokenWhole;
 
     public Grid() {
@@ -26,6 +24,7 @@ public class Grid extends Canvas {
     private void fillGrid() {
         int cpt = 0;
         _tokenWhole = new Token[_nbRows][_nbColumns];
+
         double colorProgression = Math.ceil( 255 / ( _nbRows * _nbColumns ) );
 
         ///////////Fill the grid////////////////
@@ -45,18 +44,28 @@ public class Grid extends Canvas {
             }
         }
 
-        /////////TO DO -> shuffle the grid ////////
-        /*for ( int i = 0; i < _nbRows; ++i ) {
+        shuffleGrid();
+
+
+    }
+
+    private void shuffleGrid() {
+        Vector<Token> tokenVector = new Vector<>();
+        for ( int i = 0; i < _nbRows; ++i ) {
+            tokenVector.addAll(Arrays.asList(_tokenWhole[i]).subList(0, _nbColumns));
+        }
+
+        Collections.shuffle(tokenVector);
+
+        int indexVector = 0;
+
+        for ( int i = 0; i < _nbRows; ++i ) {
             for ( int j = 0; j < _nbColumns; ++j ) {
-                if ( _tokenWhole[i][j] == null ) {
-                    System.out.print("X");
-                } else
-                System.out.print(_tokenWhole[i][j].get_number() + " ");
+                _tokenWhole[i][j] = tokenVector.get(indexVector);
+                indexVector++;
+
             }
-            System.out.println("");
-        }*/
-
-
+        }
     }
 
     //////To convert an Index to represent it on the graphic /////////
