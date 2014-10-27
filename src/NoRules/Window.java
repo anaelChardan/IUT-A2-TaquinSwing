@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Ananas on 25/10/14.
- */
+
 public class Window extends JFrame {
 
     private Grid _theGrid = new Grid();

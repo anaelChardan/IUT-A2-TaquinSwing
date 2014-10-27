@@ -2,9 +2,7 @@ package NoRules;
 
 import java.awt.*;
 
-/**
- * Created by Ananas on 25/10/14.
- */
+
 public class Token {
     private Color _textColor;
     private Color _backColor;

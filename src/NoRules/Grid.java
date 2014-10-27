@@ -4,23 +4,51 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 
+
 /**
- * Created by Ananas on 25/10/14.
- */
+  * Grid is a class representing a grid
+  * It extends from Canvas so is able to represent himself on a screen
+  */
 public class Grid extends Canvas {
+
+    /**
+     * Number of rows in the grid
+     */
     private int _nbRows;
+
+    /**
+     * Number of columns in the grid
+     */
     private int _nbColumns;
+
+    /**
+     * Where the grid is beginning on the axis
+     */
     private int _axis;
+
+    /**
+     * Where the grid is beginning on the ordinate
+     */
     private int _ordinate;
 
+    /**
+     * The array which contains the grid's token
+     */
     private Token[][] _tokenWhole;
 
+    /**
+     * Constructor of the class
+     * @see NoRules.Grid#fillGrid()
+     */
     public Grid() {
         this._nbRows = Constant._initialRow;
         this._nbColumns = Constant._initialColumn;
         fillGrid();
     }
 
+    /**
+      *
+    */
     private void fillGrid() {
         int cpt = 0;
         _tokenWhole = new Token[_nbRows][_nbColumns];
@@ -43,7 +71,6 @@ public class Grid extends Canvas {
 
             }
         }
-
 
         shuffleGrid();
         checkIsWellPlaced();

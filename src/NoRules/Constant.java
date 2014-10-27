@@ -1,8 +1,6 @@
 package NoRules;
 
-/**
- * Created by Ananas on 26/10/14.
- */
+
 public class Constant {
     public static int _columnWidth = 50;
     public static int _rowHeight = 50 ;
