@@ -4,29 +4,29 @@ import java.awt.*;
 
 
 public class Token {
-    private Color _textColor;
-    private Color _backColor;
-    private int _indRow;
-    private int _indColumn;
-    private int _number;
+    private Color textColor;
+    private Color backColor;
+    private int indRow;
+    private int indColumn;
+    private int number;
 
-    public Token( int _indRow, int _indColumn, int _number, Color _color ) {
-        this._indRow = _indRow;
-        this._indColumn = _indColumn;
-        this._number = _number;
-        set_backColor(_color);
+    public Token( int indRow, int indColumn, int number, Color _color ) {
+        this.indRow = indRow;
+        this.indColumn = indColumn;
+        this.number = number;
+        setBackColor(_color);
     }
 
     public void setWellLocated() {
-        this.set_backColor(Color.YELLOW);
+        this.setBackColor(Color.YELLOW);
     }
 
-    public Color get_textColor() {
-        return _textColor;
+    public Color getTextColor() {
+        return textColor;
     }
 
-    public void set_textColor(Color _textColor) {
-        this._textColor = _textColor;
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
     }
 
     private static int Brightness(Color c)
@@ -37,38 +37,38 @@ public class Token {
                         c.getBlue() * c.getBlue() * .068);
     }
 
-    public Color get_backColor() {
-        return _backColor;
+    public Color getBackColor() {
+        return backColor;
     }
 
-    public void set_backColor(Color _backColor) {
-        this._backColor = _backColor;
-        this._textColor = Brightness( this._backColor ) < 130 ? Color.white : Color.black;
+    public void setBackColor(Color backColor) {
+        this.backColor = backColor;
+        this.textColor = Brightness( this.backColor) < 130 ? Color.white : Color.black;
     }
 
 
-    public int get_indRow() {
-        return _indRow;
+    public int getIndRow() {
+        return indRow;
     }
 
-    public void set_indRow(int _indRow) {
-        this._indRow = _indRow;
+    public void setIndRow(int indRow) {
+        this.indRow = indRow;
     }
 
-    public int get_indColumn() {
-        return _indColumn;
+    public int getIndColumn() {
+        return indColumn;
     }
 
-    public Token set_indColumn(int _indColumn) {
-        this._indColumn = _indColumn;
+    public Token setIndColumn(int indColumn) {
+        this.indColumn = indColumn;
         return this;
     }
 
-    public int get_number() {
-        return _number;
+    public int getNumber() {
+        return number;
     }
 
-    public void set_number(int _number) {
-        this._number = _number;
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

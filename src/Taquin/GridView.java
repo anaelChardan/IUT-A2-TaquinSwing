@@ -2,9 +2,6 @@ package Taquin;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 
 /**
@@ -71,7 +68,7 @@ public class GridView extends Canvas {
         for ( int i = 0; i < gridModel.getNbRows(); ++i ) {
             for ( int j = 0; j < gridModel.getNbColumns(); ++j ) {
                 if ( gridModel.getToken(i, j) != null ) {
-                    g.setColor(gridModel.getToken(i, j).get_backColor());
+                    g.setColor(gridModel.getToken(i, j).getBackColor());
                     g.fillRect(convertIndexXToPixel(j), convertIndexYToPixel(i), _columnWidth, _rowHeight);
                 }
 
@@ -100,9 +97,9 @@ public class GridView extends Canvas {
         for ( int i = 0; i < gridModel.getNbRows(); ++i ) {
             for ( int j = 0; j < gridModel.getNbColumns(); ++j ) {
                 if ( gridModel.getToken(i, j) != null ) {
-                    String number = String.valueOf(gridModel.getToken(i, j).get_number());
+                    String number = String.valueOf(gridModel.getToken(i, j).getNumber());
                     rect = fm.getStringBounds(number, g);
-                    g.setColor(gridModel.getToken(i, j).get_textColor());
+                    g.setColor(gridModel.getToken(i, j).getTextColor());
                     g.drawString(number, (int) ( convertIndexXToPixel(j) + _columnWidth /2 - rect.getWidth()/2),
                             (int) ( convertIndexYToPixel(i) + _rowHeight /2 + rect.getHeight()/2));
                 }

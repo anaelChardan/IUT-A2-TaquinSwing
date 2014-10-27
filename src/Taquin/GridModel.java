@@ -1,7 +1,6 @@
 package Taquin;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.*;
 
 
@@ -46,7 +45,7 @@ public class GridModel {
       *
     */
     private void fillGrid() {
-        int cpt = 0;
+        int cpt = 1;
         tokens = new Token[nbRows][nbColumns];
 
         double colorProgression = Math.ceil( 255 / ( nbRows * nbColumns) );
@@ -94,7 +93,7 @@ public class GridModel {
         for ( int i = 0; i < nbRows; ++i ) {
             for ( int j = 0; j < nbColumns; ++j ) {
                 if ( tokens[i][j] != null ) {
-                    if ( i * nbColumns + j == tokens[i][j].get_number() )
+                    if ( (i * nbColumns + j)+1 == tokens[i][j].getNumber() )
                         tokens[i][j].setWellLocated();
                 }
 
