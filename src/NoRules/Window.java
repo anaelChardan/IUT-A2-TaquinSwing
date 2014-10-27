@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
 
+    public static final int _windowWidth = 700;
+    public static final int _windowHeight = 700;
+
     private Grid _theGrid = new Grid();
     private JButton _addColumn = new JButton("Add a Column");
     private JButton _addRow = new JButton("Add a Row");
@@ -19,7 +22,7 @@ public class Window extends JFrame {
 
     public Window() {
         this.setTitle("..::Taquin by CHARDAN Anaël & LAMOUREUX Marty S3A\" ::..");
-        this.setSize(Constant._windowWidth, Constant._windowHeight);
+        this.setSize(_windowWidth, _windowHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
