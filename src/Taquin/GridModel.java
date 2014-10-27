@@ -81,7 +81,7 @@ public class GridModel {
     }
 
     public void shuffleGrid() {
-        ArrayList<Token> tokens = new ArrayList<>();
+        ArrayList<Token> tokens = new ArrayList<Token>();
         for ( int i = 0; i < nbRows; ++i )
             tokens.addAll(Arrays.asList(this.tokens[i]).subList(0, nbColumns));
 
