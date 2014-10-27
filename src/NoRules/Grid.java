@@ -44,7 +44,7 @@ public class Grid extends Canvas {
             }
         }
 
-        //shuffleGrid();
+        shuffleGrid();
 
 
     }
