@@ -87,6 +87,23 @@ public class TaquinView extends JFrame implements Observer {
         this.addColumn.setEnabled(getModel().getGrid().canAddColumn());
         this.throwColumn.setEnabled(getModel().getGrid().canThrowColumn());
         this.throwRow.setEnabled(getModel().getGrid().canThrowRow());
+
+
+        if ( getModel().getGrid().isComplete() ) {
+
+            ImageIcon img  = new ImageIcon("pictures/congrats.png");
+            JOptionPane jop = new JOptionPane();
+            int option = jop.showConfirmDialog(null,
+                    "Congratulations, you complete the grid ! Do you want to replay ? ", "Congratulations",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,img);
+
+            if(option == JOptionPane.OK_OPTION){
+                 controller.action(TaquinController.Event.ResetGrid);
+            } else {
+                System.exit(0);
+            }
+        }
     }
 
     public GridView getGrid() {

@@ -14,7 +14,6 @@ public class GridModelTest {
 
 
 
-
     @Before
     public void setUp() throws Exception {
         model = new GridModel();

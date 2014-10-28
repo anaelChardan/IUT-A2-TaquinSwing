@@ -22,6 +22,10 @@ public class GridModel {
     public static final int _maxColumns = 13;
     public static final int _minRows = 2;
     public static final int _minColumns = 2;
+
+
+
+    private boolean isComplete = false;
     /**
      * Number of rows in the grid
      */
@@ -104,15 +108,17 @@ public class GridModel {
     }
 
     private void checkIsWellLocated() {
+        isComplete = true;
         for ( int i = 0; i < nbRows; ++i ) {
             for ( int j = 0; j < nbColumns; ++j ) {
                 if ( tokens[i][j] != null ) {
-                    if ( (i * nbColumns + j)+1 == tokens[i][j].getNumber() )
+                    if ( (i * nbColumns + j)+1 == tokens[i][j].getNumber() ) {
                         tokens[i][j].setWellLocated(true);
-                    else
+                    } else {
                         tokens[i][j].setWellLocated(false);
+                        isComplete = false;
+                    }
                 }
-
             }
         }
     }
@@ -241,7 +247,7 @@ public class GridModel {
         tokens[token.getIndRow()][token.getIndColumn()] = null;
         tokens[token.getIndRow() + row ][token.getIndColumn() + col ] = token;
         tokens[token.getIndRow() + row ][token.getIndColumn() + col].setIndRow(token.getIndRow() + row );
-        tokens[token.getIndRow()][token.getIndColumn() + col].setIndColumn(token.getIndColumn() + col );
+        tokens[token.getIndRow()][token.getIndColumn() + col].setIndColumn(token.getIndColumn() + col);
         checkIsWellLocated();
     }
 
@@ -323,5 +329,9 @@ public class GridModel {
     public GridModel setToken(int row, int col, Token token) {
         this.tokens[row][col] = token;
         return this;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
     }
 }
