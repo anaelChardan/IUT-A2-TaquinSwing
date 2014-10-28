@@ -5,11 +5,15 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
 /**
  * Created by martylamoureux on 27/10/14.
  */
 public class GridModelTest {
     GridModel model = new GridModel();
+
+
+
 
     @Before
     public void setUp() throws Exception {

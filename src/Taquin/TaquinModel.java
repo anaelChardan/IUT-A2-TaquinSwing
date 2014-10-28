@@ -21,6 +21,23 @@ public class TaquinModel extends Observable {
         notifyChanges();
     }
 
+    public void moveToken(Token token, GridModel.Direction direction ) {
+        switch ( direction ) {
+            case North:
+                this.grid.moveNorth(token);
+                break;
+            case West:
+                this.grid.moveWest(token);
+                break;
+            case East:
+                this.grid.moveEast(token);
+                break;
+            case South:
+                this.grid.moveSouth(token);
+                break;
+        }
+    }
+
     public void notifyChanges() {
         setChanged();
         notifyObservers();

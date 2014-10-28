@@ -100,7 +100,6 @@ public class TaquinView extends JFrame implements Observer {
 
     private class AddColumn implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            JButton btn = (JButton) e.getSource();
             controller.action(TaquinController.Event.AddColumn);
         }
     }
@@ -135,19 +134,9 @@ public class TaquinView extends JFrame implements Observer {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            Token mon_jeton = grid.getTokenAt(e.getX(), e.getY());
-            if (mon_jeton == null)
-                System.out.println("Pas de jeton ici, clique dans la grille cono");
-            else {
-                System.out.println(mon_jeton.getNumber());
-//                try {
-//                    Token next = getModel().getGrid().getNextToken(mon_jeton, GridModel.Direction.East);
-//                    System.out.println("A droite : " + next.getIndRow() + ", " + next.getIndColumn() + " #" + next.getNumber());
-//                } catch (TokenOutOfGridException e1) {
-//                    System.out.println("En dehors de la grille :D");
-//                }
-                System.out.println(getModel().getGrid().isTokenMovable(mon_jeton) ? "peut bouger" : "peut pas bouger");
-            }
+            if ( grid.getTokenAt(e.getX(), e.getY()) != null )
+               controller.move(grid.getTokenAt(e.getX(), e.getY()));
+
         }
     }
 }

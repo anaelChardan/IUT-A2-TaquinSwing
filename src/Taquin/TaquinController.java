@@ -1,10 +1,6 @@
 package Taquin;
 
-import javax.swing.*;
 
-/**
- * Created by martylamoureux on 27/10/14.
- */
 public class TaquinController {
     private TaquinModel model;
 
@@ -13,12 +9,15 @@ public class TaquinController {
         ThrowColumn,
         AddRow,
         ThrowRow,
-        ResetGrid
+        ResetGrid,
+        MoveEast,
+        MoveWest,
+        MoveNorth,
+        MoveSouth
     }
 
     public void action(Event event) {
             switch (event) {
-
                 case AddColumn: model.addColumn();
                     break;
                 case ThrowColumn: model.throwColumn();
@@ -29,7 +28,21 @@ public class TaquinController {
                     break;
                 case ResetGrid: model.reset();
                     break;
+                case MoveEast:
+                    break;
+                case MoveWest:
+                    break;
+                case MoveNorth:
+                    break;
+                case MoveSouth:
+                    break;
             }
+    }
+
+    public void move( Token token ) {
+        if ( this.model.getGrid().isTokenMovable(token) ) {
+            this.model.moveToken( token, this.model.getGrid().getDirectionEmpty( token ) );
+        }
     }
 
     public TaquinModel getModel() {

@@ -10,6 +10,8 @@ import java.util.*;
   */
 public class GridModel {
 
+
+
     public enum Direction {
         North, West, East, South
     }
@@ -114,8 +116,6 @@ public class GridModel {
     }
 
     public boolean isTokenMovable(Token token) {
-        int row = token.getIndRow();
-        int col = token.getIndColumn();
 
         Token tokenNorth = null, tokenSouth = null, tokenEast = null, tokenWest = null;
         boolean skipNorth = false, skipSouth = false, skipEast = false, skipWest = false;
@@ -152,6 +152,52 @@ public class GridModel {
         );
     }
 
+    public Direction getDirectionEmpty( Token token ) {
+       Direction rightWay = null;
+
+        try {
+            if ( getNextToken(token, Direction.North) == null ) {
+                rightWay = Direction.North;
+            }
+        } catch (TokenOutOfGridException e) {
+            System.out.println(e);
+        }
+
+        if ( rightWay == null ) {
+            try {
+                if ( getNextToken(token, Direction.South) == null ) {
+                    rightWay = Direction.South;
+                }
+            } catch (TokenOutOfGridException e) {
+
+            }
+        }
+
+        if ( rightWay == null ) {
+            try {
+                if ( getNextToken(token, Direction.East) == null ) {
+                    rightWay = Direction.East;
+                }
+            } catch (TokenOutOfGridException e) {
+                System.out.println(e);
+            }
+        }
+
+
+        if ( rightWay == null ) {
+            try {
+                if ( getNextToken(token, Direction.West) == null ) {
+                    rightWay = Direction.West;
+                }
+            } catch (TokenOutOfGridException e) {
+                System.out.println(e);
+            }
+        }
+
+        return rightWay;
+    }
+
+
     public Token getNextToken(Token token, Direction dir) throws TokenOutOfGridException {
         int row = token.getIndRow();
         int col = token.getIndColumn();
@@ -175,6 +221,30 @@ public class GridModel {
 
         return getToken(row, col);
     }
+
+
+
+    ///////////There methodes to move the token////////////////
+    public void moveNorth(Token token) {
+        move(token, -1, 0);
+    }
+
+    public void moveWest(Token token) {
+        move(token, 0, -1);
+    }
+
+    public void moveEast(Token token) {
+        move(token, 0, 1);
+    }
+
+    public void moveSouth(Token token) {
+        move(token, 1, 0);
+    }
+
+    private void move(Token token, int row, int col) {
+
+    }
+
 
     public GridModel addColumn() {
         if (!this.canAddColumn())
