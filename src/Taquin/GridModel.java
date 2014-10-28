@@ -108,7 +108,9 @@ public class GridModel {
             for ( int j = 0; j < nbColumns; ++j ) {
                 if ( tokens[i][j] != null ) {
                     if ( (i * nbColumns + j)+1 == tokens[i][j].getNumber() )
-                        tokens[i][j].setWellLocated();
+                        tokens[i][j].setWellLocated(true);
+                    else
+                        tokens[i][j].setWellLocated(false);
                 }
 
             }
@@ -159,18 +161,14 @@ public class GridModel {
             if ( getNextToken(token, Direction.North) == null ) {
                 rightWay = Direction.North;
             }
-        } catch (TokenOutOfGridException e) {
-            System.out.println(e);
-        }
+        } catch (TokenOutOfGridException e) {  }
 
         if ( rightWay == null ) {
             try {
                 if ( getNextToken(token, Direction.South) == null ) {
                     rightWay = Direction.South;
                 }
-            } catch (TokenOutOfGridException e) {
-
-            }
+            } catch (TokenOutOfGridException e) { }
         }
 
         if ( rightWay == null ) {
@@ -178,9 +176,7 @@ public class GridModel {
                 if ( getNextToken(token, Direction.East) == null ) {
                     rightWay = Direction.East;
                 }
-            } catch (TokenOutOfGridException e) {
-                System.out.println(e);
-            }
+            } catch (TokenOutOfGridException e) { }
         }
 
 
@@ -242,7 +238,11 @@ public class GridModel {
     }
 
     private void move(Token token, int row, int col) {
-
+        tokens[token.getIndRow()][token.getIndColumn()] = null;
+        tokens[token.getIndRow() + row ][token.getIndColumn() + col ] = token;
+        tokens[token.getIndRow() + row ][token.getIndColumn() + col].setIndRow(token.getIndRow() + row );
+        tokens[token.getIndRow()][token.getIndColumn() + col].setIndColumn(token.getIndColumn() + col );
+        checkIsWellLocated();
     }
 
 

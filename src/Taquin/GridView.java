@@ -112,12 +112,21 @@ public class GridView extends Canvas {
                 if ( gridModel.getToken(i, j) != null ) {
                     String number = String.valueOf(gridModel.getToken(i, j).getNumber());
                     rect = fm.getStringBounds(number, g);
-                    g.setColor(gridModel.getToken(i, j).getTextColor());
+                    g.setColor( Brightness( gridModel.getToken(i, j).getBackColor() ) < 130 ? Color.white : Color.black );
                     g.drawString(number, (int) ( convertIndexXToPixel(j) + _columnWidth /2 - rect.getWidth()/2),
                             (int) ( convertIndexYToPixel(i) + _rowHeight /2 + rect.getHeight()/2));
                 }
 
             }
         }
+
+    }
+
+    private static int Brightness(Color c)
+    {
+        return (int)Math.sqrt(
+                c.getRed() * c.getRed() * .241 +
+                        c.getGreen() * c.getGreen() * .691 +
+                        c.getBlue() * c.getBlue() * .068);
     }
 }

@@ -10,10 +10,6 @@ public class TaquinController {
         AddRow,
         ThrowRow,
         ResetGrid,
-        MoveEast,
-        MoveWest,
-        MoveNorth,
-        MoveSouth
     }
 
     public void action(Event event) {
@@ -27,14 +23,6 @@ public class TaquinController {
                 case ThrowRow: model.throwRow();
                     break;
                 case ResetGrid: model.reset();
-                    break;
-                case MoveEast:
-                    break;
-                case MoveWest:
-                    break;
-                case MoveNorth:
-                    break;
-                case MoveSouth:
                     break;
             }
     }

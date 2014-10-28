@@ -4,11 +4,18 @@ import java.awt.*;
 
 
 public class Token {
-    private Color textColor;
     private Color backColor;
     private int indRow;
     private int indColumn;
     private int number;
+
+
+
+    private boolean isWellLocated = false;
+
+    public void setWellLocated(boolean isWellLocated) {
+        this.isWellLocated = isWellLocated;
+    }
 
     public Token( int indRow, int indColumn, int number, Color _color ) {
         this.indRow = indRow;
@@ -17,33 +24,18 @@ public class Token {
         setBackColor(_color);
     }
 
-    public void setWellLocated() {
-        this.setBackColor(Color.YELLOW);
-    }
-
-    public Color getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(Color textColor) {
-        this.textColor = textColor;
-    }
-
-    private static int Brightness(Color c)
-    {
-        return (int)Math.sqrt(
-                c.getRed() * c.getRed() * .241 +
-                        c.getGreen() * c.getGreen() * .691 +
-                        c.getBlue() * c.getBlue() * .068);
-    }
 
     public Color getBackColor() {
-        return backColor;
+        if ( isWellLocated )
+            return Color.yellow;
+        else
+            return backColor;
+
+
     }
 
     public void setBackColor(Color backColor) {
         this.backColor = backColor;
-        this.textColor = Brightness( this.backColor) < 130 ? Color.white : Color.black;
     }
 
 

@@ -36,6 +36,7 @@ public class TaquinModel extends Observable {
                 this.grid.moveSouth(token);
                 break;
         }
+        notifyChanges();
     }
 
     public void notifyChanges() {
