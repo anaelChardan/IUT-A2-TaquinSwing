@@ -20,3 +20,5 @@ taquin.properties
 taquin.xml
 
 .idea/ant.xml
+
+*.xml
