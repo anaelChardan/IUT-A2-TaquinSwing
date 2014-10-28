@@ -135,7 +135,8 @@ public class GridModelTest {
         model.reset();
         Assert.assertEquals("cols reset", GridModel._initialColumn, model.getNbColumns());
         Assert.assertEquals("rows reset", GridModel._initialRow, model.getNbRows());
-        Assert.assertTrue("test shuffle", (model.getToken(0, 0).getNumber() != 1 && model.getToken(0, 1).getNumber() != 2));
+        Assert.assertTrue("test shuffle", ((model.getToken(0, 0) == null || model.getToken(0, 0).getNumber() != 1) &&
+                (model.getToken(0, 0) == null || model.getToken(0, 1).getNumber() != 2)));
     }
 
     @Test
