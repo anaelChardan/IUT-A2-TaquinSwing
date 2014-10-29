@@ -89,7 +89,7 @@ public class TaquinView extends JFrame implements Observer {
         this.throwRow.setEnabled(getModel().getGrid().canThrowRow());
 
 
-        if ( getModel().getGrid().isComplete() ) {
+        if ( getModel().getGrid().isCompleted() ) {
 
             ImageIcon img  = new ImageIcon("pictures/congrats.png");
             JOptionPane jop = new JOptionPane();

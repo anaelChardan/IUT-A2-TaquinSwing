@@ -29,7 +29,7 @@ public class TaquinController {
 
     public void move( Token token ) {
         if ( this.model.getGrid().isTokenMovable(token) ) {
-            this.model.moveToken( token, this.model.getGrid().getDirectionEmpty( token ) );
+            this.model.moveToken( token, this.model.getGrid().getDirectionToEmpty(token) );
         }
     }
 

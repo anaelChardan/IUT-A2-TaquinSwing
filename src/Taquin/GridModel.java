@@ -160,7 +160,7 @@ public class GridModel {
         );
     }
 
-    public Direction getDirectionEmpty( Token token ) {
+    public Direction getDirectionToEmpty(Token token) {
        Direction rightWay = null;
 
         try {
@@ -228,22 +228,22 @@ public class GridModel {
 
     ///////////There methodes to move the token////////////////
     public void moveNorth(Token token) {
-        move(token, -1, 0);
+        moveToken(token, -1, 0);
     }
 
     public void moveWest(Token token) {
-        move(token, 0, -1);
+        moveToken(token, 0, -1);
     }
 
     public void moveEast(Token token) {
-        move(token, 0, 1);
+        moveToken(token, 0, 1);
     }
 
     public void moveSouth(Token token) {
-        move(token, 1, 0);
+        moveToken(token, 1, 0);
     }
 
-    private void move(Token token, int row, int col) {
+    private void moveToken(Token token, int row, int col) {
         tokens[token.getIndRow()][token.getIndColumn()] = null;
         tokens[token.getIndRow() + row ][token.getIndColumn() + col ] = token;
         tokens[token.getIndRow() + row ][token.getIndColumn() + col].setIndRow(token.getIndRow() + row );
@@ -331,7 +331,7 @@ public class GridModel {
         return this;
     }
 
-    public boolean isComplete() {
+    public boolean isCompleted() {
         return isComplete;
     }
 }
