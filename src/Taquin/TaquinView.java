@@ -67,7 +67,7 @@ public class TaquinView extends JFrame implements Observer {
         north.add(throwRow);
         north.add(reset);
 
-        //////////Gestion de notre container////
+        //////////Management of the container////
         container.add(north, BorderLayout.NORTH);
         this.setContentPane(container);
 
@@ -147,7 +147,6 @@ public class TaquinView extends JFrame implements Observer {
     }
 
     private class Click extends MouseInputAdapter {
-
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
