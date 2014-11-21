@@ -10,7 +10,7 @@ import static junit.framework.Assert.*;
 
 
 /**
- * Created by martylamoureux on 27/10/14.
+ * Test of the method GridModelTest
  */
 public class GridModelTest {
     GridModel model = new GridModel();
@@ -22,6 +22,10 @@ public class GridModelTest {
         model = new GridModel();
     }
 
+    /**
+     * Test of the method isTokenMovable
+     * @throws Exception
+     */
     @Test
     public void testIsTokenMovable() throws Exception {
         model.fillResolvedGrid();
@@ -33,6 +37,10 @@ public class GridModelTest {
         assertFalse("token #19 is NOT movable", model.isTokenMovable(model.getToken(3, 3)));
     }
 
+    /**
+     * Test of the method getNextToken
+     * @throws Exception
+     */
     @Test
     public void testGetNextToken() throws Exception {
         model.fillResolvedGrid();
@@ -43,6 +51,10 @@ public class GridModelTest {
         assertEquals("below 19, there is 14", 24, model.getNextToken(model.getToken(3, 3), GridModel.Direction.South).getNumber());
     }
 
+    /**
+     * Test of the method Add column
+     * @throws Exception
+     */
     @Test
     public void testAddColumn() throws Exception {
         assertEquals("initial value", GridModel._initialColumn, model.getNbColumns());
@@ -54,6 +66,10 @@ public class GridModelTest {
         assertEquals("much col", GridModel._maxColumns, model.getNbColumns());
     }
 
+    /**
+     * test of the method canAddColumn
+     * @throws Exception
+     */
     @Test
     public void testCanAddColumn() throws Exception {
         assertEquals("initial value", GridModel._initialColumn, model.getNbColumns());
@@ -65,6 +81,10 @@ public class GridModelTest {
         assertFalse("cannot add col when really too high", model.canAddColumn());
     }
 
+    /**
+     * test of the method addRow
+     * @throws Exception
+     */
     @Test
     public void testAddRow() throws Exception {
         assertEquals("initial value", GridModel._initialRow, model.getNbRows());
@@ -76,6 +96,10 @@ public class GridModelTest {
         assertEquals("much rows", GridModel._maxRows, model.getNbRows());
     }
 
+    /**
+     * test of the method canAddRow
+     * @throws Exception
+     */
     @Test
     public void testCanAddRow() throws Exception {
         assertEquals("initial value", GridModel._initialRow, model.getNbRows());
@@ -87,6 +111,10 @@ public class GridModelTest {
         assertFalse("cannot add row when really too high", model.canAddRow());
     }
 
+    /**
+     * test of the method ThrowColumn
+     * @throws Exception
+     */
     @Test
     public void testThrowColumn() throws Exception {
         assertEquals("initial value", GridModel._initialColumn, model.getNbColumns());
@@ -98,6 +126,10 @@ public class GridModelTest {
         assertEquals("much cols", GridModel._minColumns, model.getNbColumns());
     }
 
+    /**
+     * test of the method can throw method
+     * @throws Exception
+     */
     @Test
     public void testCanThrowColumn() throws Exception {
         assertEquals("initial value", GridModel._initialColumn, model.getNbColumns());
@@ -109,6 +141,10 @@ public class GridModelTest {
         assertFalse("cannot throw col when really too low", model.canThrowColumn());
     }
 
+    /**
+     * Test of the metohd throw row
+     * @throws Exception
+     */
     @Test
     public void testThrowRow() throws Exception {
         assertEquals("initial value", GridModel._initialRow, model.getNbRows());
@@ -120,6 +156,10 @@ public class GridModelTest {
         assertEquals("much rows", GridModel._minRows, model.getNbRows());
     }
 
+    /**
+     * test of the method canThrowRow
+     * @throws Exception
+     */
     @Test
     public void testCanThrowRow() throws Exception {
         assertEquals("initial value", GridModel._initialRow, model.getNbRows());
@@ -131,6 +171,10 @@ public class GridModelTest {
         assertFalse("cannot throw row when really too low", model.canThrowRow());
     }
 
+    /**
+     * test of the method reset
+     * @throws Exception
+     */
     @Test
     public void testReset() throws Exception {
         model.setNbColumns(10);
@@ -142,6 +186,10 @@ public class GridModelTest {
                 (model.getToken(0, 0) == null || model.getToken(0, 1).getNumber() != 2)));
     }
 
+    /**
+     * test of the method setNbRows
+     * @throws Exception
+     */
     @Test
     public void testSetNbRows() throws Exception {
         assertEquals("initial value", GridModel._initialRow, model.getNbRows());
@@ -157,6 +205,10 @@ public class GridModelTest {
         assertEquals("value is under limit, value is fixed to the limited", 2, model.getNbRows());
     }
 
+    /**
+     * test of the method setNbColumns
+     * @throws Exception
+     */
     @Test
     public void testSetNbColumns() throws Exception {
         assertEquals("initial value", GridModel._initialColumn, model.getNbColumns());
