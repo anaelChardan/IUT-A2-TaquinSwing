@@ -1,7 +1,7 @@
 package Taquin;
 
 /**
- * Created by martylamoureux on 27/10/14.
+ * THE main class to start the class
  */
 public class Taquin {
     public static void main(String[] args) {

@@ -10,7 +10,14 @@ import java.awt.geom.Rectangle2D;
   */
 public class GridView extends Canvas {
 
+    /**
+     * The constant to know the columnWidth
+     */
     public static final int _columnWidth = 50;
+
+    /**
+     * The constant to know the row Height
+     */
     public static final int _rowHeight = 50 ;
 
     /**
@@ -32,15 +39,29 @@ public class GridView extends Canvas {
         this.gridModel = gridModel;
     }
 
-    //////To convert an Index to represent it on the graphic /////////
+    /**
+     * the method to convert a cell axis into a pixel axis
+     * @param i the cell axis
+     * @return the pixel axis
+     */
     private int convertIndexXToPixel(int i) {
         return _columnWidth * i + axis;
     }
 
+    /**
+     * the method to convert a pixel axis into a cell axis
+     * @param j the cell
+     * @return the pixel ordinate
+     */
     private int convertIndexYToPixel(int j) {
         return _rowHeight * j + ordinate;
     }
 
+    /**
+     * The method to convert a pixel axis into a cell
+     * @param xpixel the pixel axis
+     * @return the cell axis
+     */
     public int convertXPixel( int xpixel ) {
         if ( xpixel >= axis && xpixel <= ( axis + ( gridModel.getNbColumns() * _columnWidth ) ) ) {
             return (int) Math.ceil( ( xpixel - axis) / ( _columnWidth ) );
@@ -48,6 +69,11 @@ public class GridView extends Canvas {
         return -1;
     }
 
+    /**
+     * The method to convert a pixel ordinate into a cell ordinate
+     * @param ypixel the pixel ordinate
+     * @return the cell ordinate
+     */
     public int convertYPixel( int ypixel ) {
         if ( ypixel >= ordinate && ypixel <= ( ordinate + ( gridModel.getNbRows() * _rowHeight ) ) ) {
             return (int) Math.ceil( ( ypixel - ordinate) / ( _rowHeight ) );
@@ -56,6 +82,12 @@ public class GridView extends Canvas {
         return -1;
     }
 
+    /**
+     * The method to take a token at a cell place
+     * @param x
+     * @param y
+     * @return
+     */
     public Token getTokenAt(int x, int y) {
         int coordX = convertXPixel(x);
         int coordY = convertYPixel(y);
@@ -69,6 +101,10 @@ public class GridView extends Canvas {
         return gridModel.getToken(coordY, coordX);
     }
 
+    /**
+     * The method to paint this gridView
+     * @param g
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -122,6 +158,11 @@ public class GridView extends Canvas {
 
     }
 
+    /**
+     * The color perception method to easier the readding of the number in a cell in front of a backColor
+     * @param c th font back color
+     * @return the color perception
+     */
     private static int Brightness(Color c)
     {
         return (int)Math.sqrt(
