@@ -10,6 +10,8 @@ import java.awt.geom.Rectangle2D;
   */
 public class GridView extends Canvas {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The constant to know the columnWidth
      */
@@ -84,9 +86,9 @@ public class GridView extends Canvas {
 
     /**
      * The method to take a token at a cell place
-     * @param x
-     * @param y
-     * @return
+     * @param x the axis of our grid
+     * @param y the ordinate of our grid
+     * @return the Token
      */
     public Token getTokenAt(int x, int y) {
         int coordX = convertXPixel(x);
@@ -103,7 +105,7 @@ public class GridView extends Canvas {
 
     /**
      * The method to paint this gridView
-     * @param g
+     * @param g the graphics
      */
     @Override
     public void paint(Graphics g) {

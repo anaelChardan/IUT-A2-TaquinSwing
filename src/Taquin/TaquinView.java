@@ -14,6 +14,8 @@ import java.util.Observer;
  */
 public class TaquinView extends JFrame implements Observer {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The constant to know the Witdh of the window
      */
@@ -138,8 +140,7 @@ public class TaquinView extends JFrame implements Observer {
         if ( getModel().getGrid().isCompleted() ) {
 
             ImageIcon img  = new ImageIcon("pictures/congrats.png");
-            JOptionPane jop = new JOptionPane();
-            int option = jop.showConfirmDialog(null,
+            int option = JOptionPane.showConfirmDialog(null,
                     "Congratulations, you complete the grid ! Do you want to replay ? ", "Congratulations",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,img);
@@ -162,7 +163,7 @@ public class TaquinView extends JFrame implements Observer {
 
     /**
      * The setter of the grid view
-     * @param grid
+     * @param grid the grid of our view
      */
     public void setGrid(GridView grid) {
         this.grid = grid;
